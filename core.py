@@ -38,8 +38,7 @@ def adaptive_chunking(text):
 
 # 3. استدعاء موديل الـ Embedding القوي والمطلوب هندسياً BGE-M3
 def get_embedding_model():
-    """جلب موديل BGE-M3 العالمي الخبير في فهم معاني الكلمات العربية"""
-    return HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2")
+    return HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2")
 
 # 4. محرك إعادة الترتيب (Simple Reranker)
 def simple_reranker(query, retrieved_docs):
@@ -47,9 +46,11 @@ def simple_reranker(query, retrieved_docs):
     query_words = query.split()
     scored_docs = []
     for doc in retrieved_docs:
-        # حساب كم كلمة من السؤال تكررت في هذه القطعة المسترجعة
-        score = sum(1 for word in query_words if word in doc.page_content)
+        # فحص مرن لقراءة النص سواء كان كائن أو نص صريح
+        text_content = doc.page_content if hasattr(doc, 'page_content') else str(doc)
+        score = sum(1 for word in query_words if word in text_content)
         scored_docs.append((score, doc))
-    # ترتيب تنازلي (الأسكور الأعلى أولاً)
+    
     scored_docs.sort(key=lambda x: x[0], reverse=True)
-    return [doc for score, doc in scored_docs]
+    return [doc for (score, doc) in scored_docs]
+    return [doc for (score, doc) in scored_docs]
