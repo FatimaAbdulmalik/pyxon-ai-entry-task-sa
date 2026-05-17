@@ -6,3 +6,5 @@ pypdf
 python-docx
 pandas
 sentence-transformers
+langchain
+langchain-community
