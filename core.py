@@ -39,7 +39,8 @@ def adaptive_chunking(text):
 # 3. استدعاء موديل الـ Embedding القوي والمطلوب هندسياً BGE-M3
 def get_embedding_model():
     """جلب موديل BGE-M3 العالمي الخبير في فهم معاني الكلمات العربية"""
-    return HuggingFaceEmbeddings(model_name="BAAI/bge-m3")
+    return 
+    HuggingFaceEmbeddings(model_name="sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2")
 
 # 4. محرك إعادة الترتيب (Simple Reranker)
 def simple_reranker(query, retrieved_docs):
