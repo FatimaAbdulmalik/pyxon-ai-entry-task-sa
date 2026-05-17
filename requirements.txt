@@ -7,3 +7,4 @@ python-docx
 pandas
 sentence-transformers==2.7.0
 transformers==4.41.2
+protobuf==3.20.3
