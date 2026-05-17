@@ -66,14 +66,15 @@ if uploaded_file:
         
     database.save_document_to_sql(file_id, file_name, file_ext, strategy_used, len(chunks), parse_duration, structured_chunks)
     
-    with st.spinner("جاري تكشيف البيانات وحفظها مستمراً في ChromaDB باستخدام موديل BGE-M3..."):
+    with st.spinner("جاري تكشيف البيانات وحفظها مستمراً في ChromaDB..."):
         emb_model = core.get_embedding_model()
-    vector_store = Chroma.from_documents(documents=lc_docs, embedding=emb_model, persist_directory="./chroma_enterprise_db_new")
-st.success("تم تفعيل معايير الإنتاجية بنجاح! ✅")
-    
+        vector_store = Chroma.from_documents(documents=lc_docs, embedding=emb_model, persist_directory="./chroma_enterprise_db_new")
+
+    st.success("تم تفعيل معايير الإنتاجية بنجاح! ✅")
+
     st.subheader("📊 لوحة النظام الهندسية (System Insights & Metrics)")
-    col1, col2, col3 = st.columns(3)
-    col1.metric("إستراتيجية التقطيع التكيفية المستخدمة", strategy_used)
+    coll, col2, col3 = st.columns(3)
+    coll.metric("إستراتيجية التقطيع التكيفية المستخدمة", strategy_used)
     col2.metric("عدد الـ Chunks المستخرجة وموقعها", f"{len(chunks)} قطعة محفوظة")
     col3.metric("وقت معالجة وتكشيف النص الكلي", f"{parse_duration} ثانية")
     
