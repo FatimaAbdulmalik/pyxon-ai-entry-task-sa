@@ -1,7 +1,8 @@
 streamlit
 langchain==0.2.16
 langchain-community==0.2.12
-chromadb
+chromadb==0.5.0
+protobuf==4.25.1
 pypdf
 python-docx
 pandas
