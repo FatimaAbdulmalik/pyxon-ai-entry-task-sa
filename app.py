@@ -6,7 +6,7 @@ import pandas as pd
 import sqlite3
 from docx import Document
 from langchain_community.document_loaders import PyPDFLoader
-from langchain_community.vectorstores import Chroma
+from langchain_chroma import Chroma
 from langchain.docstore.document import Document as LCDoc
 
 import database
