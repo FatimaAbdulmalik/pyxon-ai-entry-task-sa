@@ -68,12 +68,8 @@ if uploaded_file:
     
     with st.spinner("جاري تكشيف البيانات وحفظها مستمراً في ChromaDB باستخدام موديل BGE-M3..."):
         emb_model = core.get_embedding_model()
-        vector_store = 
-    Chroma.from_documents(documents=lc_docs, 
-    embedding=emb_model, persist_directory="./
-    chroma_enterprise_db_new")
-
-    st.success("✅ تم تفعيل معايير الإنتاجية بنجاح!")
+    vector_store = Chroma.from_documents(documents=lc_docs, embedding=emb_model, persist_directory="./chroma_enterprise_db_new")
+st.success("تم تفعيل معايير الإنتاجية بنجاح! ✅")
     
     st.subheader("📊 لوحة النظام الهندسية (System Insights & Metrics)")
     col1, col2, col3 = st.columns(3)
